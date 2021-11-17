@@ -15,7 +15,7 @@ class IconLocation(pygame.sprite.Sprite):
 def start():
     global total_coins
     # Generate three random icon
-    rand_icons = rumpy.random.choice(icons, 3, p=icons_proba)
+    rand_icons = numpy.random.choice(icons, 3, p=icons_proba)
     # Draw the random icons on the correct location
     loc_left.set_image(icon_dict[rand_icons[0]])
     loc_middle.set_image(icon_dict[rand_icons[1]])
@@ -62,7 +62,7 @@ Location.add(loc_right)
 total_coins = 500
 
 # stock the social media icons in list
-# Youtube = Jacpot +200$ (see late
+# Youtube = Jacpot +200$ (see later)
 icons = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Youtube"]
 # Probability of evry icon to appear
 icons_proba = [0.2, 0.25, 0.35, 0.15, 0.05]
@@ -101,3 +101,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             quit()
+        # check if key is pressed
+        if event.type == pygame.KEYDOWN:
+            # 1 click = 1 try ====> -15$
+            if total_coins >= 15:
+                total_coins -= 15
+                start()
