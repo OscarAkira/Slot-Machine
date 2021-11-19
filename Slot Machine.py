@@ -40,7 +40,8 @@ screen.fill(white)
 
 # Load background image
 background = pygame.image.load('Assets/Slot-Machine.png')
-
+police_total_coins = pygame.font.SysFont("Comic Sans MS", 50)
+police_menu = pygame.font.SysFont("Comic Sans MS", 25)
 
 # Load location icons
 # No equation to do location ... just try and then adjust it
@@ -55,11 +56,26 @@ Location.add(loc_left)
 Location.add(loc_middle)
 Location.add(loc_right)
 
+# Location of icons menu
+Location_menu = pygame.sprite.Group()
+first_loc = IconLocation(480, 200, "youtube")
+second_loc = IconLocation(480, 260, "linkedin")
+third_loc = IconLocation(480, 330, "facebook")
+fourth_loc = IconLocation(480, 400, "Instagram")
+fifth_loc = IconLocation(480, 466, "twitter")
+
+# Group location_menu
+Location_menu.add(first_loc)
+Location_menu.add(second_loc)
+Location_menu.add(third_loc)
+Location_menu.add(fourth_loc)
+Location_menu.add(fifth_loc)
+
 
 
 
 # Coins of the player
-total_coins = 500
+total_coins = 1000
 
 # stock the social media icons in list
 # Youtube = Jacpot +200$ (see later)
@@ -95,6 +111,25 @@ while run:
     screen.blit(background, (0, 0))
     # Draw icon image
     Location.draw(screen)
+    # Print the coins of the player
+    text = police_total_coins.render("Total "+str(total_coins)+"$", True, (0, 0, 0))
+    screen.blit(text,(400, 0))
+    # Print menu reward for each icon
+    yt_menu = police_menu.render("X3  +200$", True, (0, 0, 0))
+    screen.blit(yt_menu, (550, 215))
+    lk_menu = police_menu.render("X3  +35$", True, (0, 0, 0))
+    screen.blit(lk_menu, (550, 275))
+    fb_menu = police_menu.render("X3  +25$", True, (0, 0, 0))
+    screen.blit(fb_menu, (550, 345))
+    insta_menu = police_menu.render("X3  +20$", True, (0, 0, 0))
+    screen.blit(insta_menu, (550, 415))
+    tw_menu = police_menu.render("X3  +15$", True, (0, 0, 0))
+    screen.blit(tw_menu, (550, 480))
+
+
+
+    # Draw icon image of the menu
+    Location_menu.draw(screen)
     # update screen
     pygame.display.flip()
     for event in pygame.event.get():
